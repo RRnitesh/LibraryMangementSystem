@@ -1,0 +1,63 @@
+﻿@model Library_ManagementSystem.Models.BorrowedBook
+
+@{
+    ViewData["Title"] = "BorrowEdit";
+}
+
+<h1>BorrowEdit</h1>
+
+<h4>BorrowedBook</h4>
+@if (TempData["SuccessBorrow"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessBorrow"]
+    </div>
+}
+@if (TempData["ErrorBorrow"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorBorrow"]
+    </div>
+}
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="BorrowEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Hidden fields for read-only properties -->
+            <input asp-for="BorrowId" type="hidden" />
+            <input asp-for="BookId" type="hidden" />
+            <input asp-for="MemberId" type="hidden" />
+            <input asp-for="BorrowDate" type="hidden" />
+            <input asp-for="DueDate" type="hidden" />
+
+            <div class="form-group">
+                <label asp-for="ReturnDate" class="control-label"></label>
+                <input asp-for="ReturnDate" class="form-control" />
+                <span asp-validation-for="ReturnDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control">
+                    <option value="Borrowed">Borrowed</option>
+                    <option value="Returned">Returned</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="BorrowIndex">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,91 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+/* Container Styling */
+.container {
+    margin-top: 20px;
+}
+
+/* Card Styling */
+.card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    width: 100%;
+}
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+/* Book Image Styling */
+.card-img-container {
+    width: 40%; /* Adjust width as needed */
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-right: 2px solid #ddd;
+}
+
+/* Card Body */
+.card-body {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Title Styling */
+.card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+/* Card Text Styling */
+.card-text {
+    font-size: 1rem;
+    color: #555;
+    flex-grow: 1;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    transition: background-color 0.2s ease-in-out;
+    align-self: flex-start;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }

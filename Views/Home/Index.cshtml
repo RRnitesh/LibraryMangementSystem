@@ -1,0 +1,48 @@
+﻿@model List<Library_ManagementSystem.Models.Book>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Library Management System</h1>
+</div>
+
+<div class="container">
+    @if (TempData["SuccessMessage"] != null){
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+            </div>
+    }
+    @if (TempData["ErrorMessage"] != null){
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+            </div>
+    }
+
+    <div class="row" style="margin-top:5%">
+        @foreach (var book in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="~/@book.img_url" class="card-img-top" alt="@book.Title" />
+                        <h5 class="card-title">@book.Title</h5>
+                        <p class="card-text">Author: @book.Author</p>
+                        <p class="card-text">Genre: @book.Genre</p>
+                        <p class="card-text">ISBN: @book.ISBN</p>
+                        <p class="card-text">Quantity: @book.Quantity</p>
+
+                        <form asp-controller="Request"  asp-action="RequestBook">
+                           <input type="hidden" name="bookId" value="@book.BookId"/>
+                          <input type="hidden" name="bookTitle" value="@book.Title" />
+                           <button type="submit" class="btn btn-primary">Request For Book</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

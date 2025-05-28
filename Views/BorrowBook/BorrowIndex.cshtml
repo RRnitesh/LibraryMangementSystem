@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Library_ManagementSystem.Models.BorrowedBook>
+
+@{
+    ViewData["Title"] = "BorrowIndex";
+}
+
+<h1>BorrowIndex</h1>
+
+<p>
+    <a asp-action="BorrowCreate">Create New</a>
+</p>
+@if (TempData["SuccessBorrow"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessBorrow"]
+    </div>
+}
+@if (TempData["ErrorBorrow"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorBorrow"]
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BorrowId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BorrowDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReturnDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BorrowId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BorrowDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            
+                <td>
+                        @Html.ActionLink("Change-status", "BorrowEdit", new { id = item.BorrowId }) |
+                    <form asp-action="BorrowDelete" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@item.BorrowId" />
+                        <button type="submit" class="btn btn-link"
+                                onclick="return confirm('Are you sure you want to delete this record?')">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+        
+        </tr>
+}
+    </tbody>
+</table>
